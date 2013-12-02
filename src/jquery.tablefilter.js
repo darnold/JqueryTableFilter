@@ -20,15 +20,23 @@
 
 	    var settings = $.extend({
 		    filterControls  : '#filter-controls button',
-            elements        : 'tr',
+            rows            : 'tr',
+            rowFilter       : 'class',
             complete        : null
         }, options);
 
+
+
         return this.each( function() {
+	        event.preventDefault();
+
 	        var table = $(this);
+	        var buttons = $(settings.filterControls);
+
+	        $(buttons).first().addClass('active');
 
 	        // Get button data from filterControls
-	        $( settings.filterControls ).click(function(event) {
+	        $(buttons).click(function(event) {
 		        var button = $(this);
 		        var buttonData = $(button).data('filter');
 
@@ -39,28 +47,39 @@
 
 
 		        // Remove all active classes from buttons
-	            $(settings.filterControls).removeClass('active');
+	            $(buttons).removeClass('active');
 
 		        // Add active class
 		        $(button).addClass('active');
 
 		        // Just show all rows
 		        if(buttonData === '*') {
-			        $(table).find(settings.elements).fadeIn();
+			        $(table).find(settings.rows).fadeIn();
 		        }
 
 		        // Hide all rows
 		        else {
-			        $(table).find(settings.elements).hide();
+			        $(table).find(settings.rows).hide();
 		        }
 
 
+		        // Class
+		        if(settings.rowFilter === 'class' && buttonData !== '*') {
+			        buttonData = '.'+buttonData;
+		        }
+
+		        // Data
+		        else{
+			        buttonData = '['+ settings.rowFilter +'="'+ buttonData +'"]';
+		        }
+
+		        log(buttonData);
+
 		        // Go through all elements and filter
-		        $(table).find(settings.elements)
-				  .filter('[data-filter-type="'+ buttonData +'"]')
+		        $(table).find(settings.rows)
+				  .filter(buttonData)
 				  .fadeIn();
 
-		        event.preventDefault();
 			});
 
 
