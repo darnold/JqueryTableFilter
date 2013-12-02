@@ -1,12 +1,27 @@
+/*!
+ * jQuery Table Filter Plugin
+ * Examples and documentation at:
+ * Copyright (c) 2013-2013 Davy Arnold
+ * Version: 1.0 (DEC-2013)
+ * Licensed under the MIT license.
+ * Requires: jQuery v1.7.1 or later
+ */
+
 (function($) {
+
+	/* Global console */
+	function log() {
+        if (window.console && console.log) {
+	        console.log('[TableFilter] ' + Array.prototype.join.call(arguments,' '));
+        }
+	}
 
     $.fn.tablefilter = function( options ) {
 
 	    var settings = $.extend({
-		    filterControls : '#filter-controls button',
-            elements     : 'tr',
-            button      : null,
-            complete     : null
+		    filterControls  : '#filter-controls button',
+            elements        : 'tr',
+            complete        : null
         }, options);
 
         return this.each( function() {
