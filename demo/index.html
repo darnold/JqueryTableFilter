@@ -1,9 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Jquery Table Filter - Davy Arnold</title>
+
+    <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" media="screen" />
+    <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" media="screen" />
+
+    <style>
+        td {
+            text-align: right;
+        }
+        td:first-child {
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1></h1>
+            <div id="filter-controls" class="btn-group">
+                <p>Filter:
+                    <button type="button" data-filter="*" class="btn btn-default active">All</button>
+                    <button type="button" data-filter="instruments" class="btn btn-default">Instruments</button>
+                    <button type="button" data-filter="vocals" class="btn btn-default">Vocals</button>
+                    <button type="button" data-filter="production" class="btn btn-default">Production</button>
+                </p>
+            </div>
+            <table class="table table-hover">
+                <tbody>
+                    <tr data-filter-type="instruments">
+                        <td>Guitar</td>
+                        <td><span class="label label-info">Instruments</span></td>
+                    </tr>
+                    <tr data-filter-type="instruments">
+                        <td>Keyboards</td>
+                        <td><span class="label label-info">Instruments</span></td>
+                    </tr>
+                    <tr data-filter-type="vocals">
+                        <td>Lead</td>
+                        <td><span class="label label-info">Vocals</span></td>
+                    </tr>
+                    <tr data-filter-type="production">
+                        <td>PowerPoint</td>
+                        <td><span class="label label-info">Production</span></td>
+                    </tr>
+                    <tr data-filter-type="production">
+                        <td>Soundboard</td>
+                        <td><span class="label label-info">Production</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<script src="../src/jquery.tablefilter.js"></script>
+<script>
+    $('.table').tablefilter({
+        color       : '#005dff',
+        fontStyle   : 'italic'
+    });
+</script>
 </body>
 </html>
